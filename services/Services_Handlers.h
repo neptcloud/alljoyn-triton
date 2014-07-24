@@ -16,7 +16,6 @@
 
 #ifndef _SERVICES_HANDLERS_H_
 #define _SERVICES_HANDLERS_H_
-#define CONTROLPANEL_SERVICE 1
 
 #include <alljoyn.h>
 #include "Services_Common.h"

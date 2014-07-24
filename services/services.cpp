@@ -14,6 +14,7 @@
  *    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  ******************************************************************************/
 #define CONTROLPANEL_SERVICE 1
+#define NOTIFICATION_SERVICE_PRODUCER 1
 
 #include "Services_Handlers.h"
 #include <alljoyn.h>

@@ -18,6 +18,7 @@
 #define _SERVICES_COMMON_H_
 
 #define CONTROLPANEL_SERVICE 1
+#define NOTIFICATION_SERVICE_PRODUCER 1
 #include <alljoyn.h>
 
 /**
@@ -157,7 +158,7 @@ AJ_Status AJSVC_UnmarshalAppId(AJ_Message* msg, char* buf, size_t bufLen);
 
 #define NUM_PRE_NOTIFICATION_COMMON_OBJECTS   NUM_PRE_ONBOARDING_OBJECTS + NUM_ONBOARDING_OBJECTS
 #if defined(NOTIFICATION_SERVICE_PRODUCER) || defined(NOTIFICATION_SERVICE_CONSUMER)
-    #include "alljoyn/notification/NotificationCommon.h"
+    #include "NotificationCommon.h"
 #else
     #define NUM_NOTIFICATION_COMMON_OBJECTS 0
     #define NOTIFICATION_COMMON_APPOBJECTS
@@ -165,7 +166,7 @@ AJ_Status AJSVC_UnmarshalAppId(AJ_Message* msg, char* buf, size_t bufLen);
 
 #define NUM_PRE_NOTIFICATION_PRODUCER_OBJECTS NUM_PRE_NOTIFICATION_COMMON_OBJECTS + NUM_NOTIFICATION_COMMON_OBJECTS
 #ifdef NOTIFICATION_SERVICE_PRODUCER
-    #include "alljoyn/notification/NotificationProducer.h"
+    #include "NotificationProducer.h"
 #else
     #define NUM_NOTIFICATION_PRODUCER_OBJECTS 0
     #define NOTIFICATION_PRODUCER_APPOBJECTS
