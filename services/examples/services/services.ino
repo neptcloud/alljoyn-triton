@@ -34,8 +34,9 @@
 
 #include <alljoyn.h>
 
-#include <services.h>
+#include "services.h"
 #include <stdint.h>
+#include <Wire.h>
 
 int led = 13;
 
@@ -97,9 +98,26 @@ void DUE_led(uint8_t on)
     digitalWrite(led, on ? HIGH : LOW); // turn the LED on (HIGH is the voltage level)
 }
 
-// What page to grab!
-//#define WEBSITE      "192.168.1.255"
-//#define WEBPAGE      "index.html"
+void InitHP()
+{
+    Wire.begin(); 
+    Wire.beginTransmission(byte(0x20));  //0x40 >> 1                    
+    Wire.write(byte(0x06));  
+    Wire.write(byte(0x00)); 
+    Wire.write(byte(0x00));
+    Wire.endTransmission();  
+}
+
+void WriteHP(byte hp)
+{
+    int data;
+    Wire.beginTransmission(byte(0x20));  //0x40 >> 1  
+    data = 0xffff<<hp;  
+    Wire.write(byte(0x02));
+    Wire.write(data & 0xff);             
+    Wire.write((data & 0xff00) >> 8);
+    Wire.endTransmission(); 
+}
 
 
 /**************************************************************************/
@@ -115,6 +133,8 @@ uint32_t ip;
 void setup() {
     // initialize the digital pin as an output.
     pinMode(led, OUTPUT);
+    
+    InitHP();
 
     Serial.begin(115200);
     while (!Serial) ;
